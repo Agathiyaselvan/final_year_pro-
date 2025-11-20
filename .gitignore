@@ -1,0 +1,14 @@
+# Java / Maven
+target/
+*.class
+
+# Spring Boot
+*.log
+
+# React
+frontend/node_modules/
+frontend/build/
+
+# IDE
+.idea/
+.vscode/

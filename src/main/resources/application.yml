@@ -1,0 +1,58 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  application:
+    name: post-quantum-fido2
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+  
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.H2Dialect
+  
+  security:
+    user:
+      name: admin
+      password: admin
+
+logging:
+  level:
+    com.pqc.fido2: INFO
+    org.springframework.security: INFO
+    org.springframework.security.web.FilterChainProxy: OFF
+    org.springframework.security.web.authentication.AnonymousAuthenticationFilter: OFF
+    org.springframework.security.web.authentication.Http403ForbiddenEntryPoint: OFF
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: TRACE
+    org.springframework.web.servlet.mvc.method.annotation.RequestResponseBodyMethodProcessor: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.HttpEntityMethodProcessor: DEBUG
+    org.springframework.web.filter.DelegatingFilterProxy: DEBUG
+    org.springframework.web.servlet.DispatcherServlet: DEBUG
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql.BasicBinder: OFF
+
+# Post-Quantum FIDO2 Configuration
+pqc:
+  fido2:
+    rp-id: localhost
+    rp-name: Post-Quantum FIDO2 Demo
+    challenge-timeout: 300 # 5 minutes
+    dilithium-parameters: DILITHIUM_3
+    ml-dilithium-layers: 3
+    hybrid-enabled: true
